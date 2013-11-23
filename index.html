@@ -45,19 +45,22 @@ html, body {
     height: 100%; 
   background: #973e76;
 }
-/*
 .swiper-slide .title {
   font-style: italic;
   font-size: 42px;
-  margin-top: 80px;
+  margin-top: 20%;
   margin-bottom: 0;
   line-height: 45px;
+  vertical-align: central;
 }
-.swiper-slide p {
-  font-style: italic;
-  font-size: 25px;
+
+.slide-middle img {
+    margin-top: -55%;
 }
-*/
+
+.slide-bottom img {
+    margin-top: -110%;
+}
   </style>
 </head>
 <body>
@@ -65,48 +68,21 @@ html, body {
   <div class="swiper-container section">
     <div class="swiper-wrapper">
       <div class="swiper-slide red-slide">
-        <div class="title">Free Mode</div>
-        <p>has no fixed positions</p>
-      </div>
-      <div class="swiper-slide green-slide">
-        <div class="title">Slide 4</div>
-        <p>Keep swiping</p>
-      </div>
-      <div class="swiper-slide blue-slide">
-        <div class="title">Fluid-Mode Enabled</div>
-        <p>When you release the slide, it keep moving for a while</p>
+        <div class="title">Crazy Gang</div>
       </div>
     </div>
   </div>
   <div class="swiper-container2 section">
     <div class="swiper-wrapper">
       <div class="swiper-slide green-slide">
-        <div class="title">Slide 4</div>
-        <p>Keep swiping</p>
-      </div>
-      <div class="swiper-slide red-slide">
-        <div class="title">Free Mode</div>
-        <p>has no fixed positions</p>
-      </div>
-      <div class="swiper-slide blue-slide">
-        <div class="title">Fluid-Mode Enabled</div>
-        <p>When you release the slide, it keep moving for a while</p>
+        <div class="title">Swipe me!</div>
       </div>
     </div>
   </div>
   <div class="swiper-container3 section">
     <div class="swiper-wrapper">
       <div class="swiper-slide blue-slide">
-        <div class="title">Fluid-Mode Enabled</div>
-        <p>When you release the slide, it keep moving for a while</p>
-      </div>
-      <div class="swiper-slide green-slide">
-        <div class="title">Slide 4</div>
-        <p>Keep swiping</p>
-      </div>
-      <div class="swiper-slide red-slide">
-        <div class="title">Free Mode</div>
-        <p>has no fixed positions</p>
+        <div class="title">Mash us up</div>
       </div>
     </div>
   </div>
@@ -114,21 +90,33 @@ html, body {
   <script src="js/jquery-1.10.1.min.js"></script>
   <script src="js/idangerous.swiper-2.1.min.js"></script>
   <script>
+      var swipers = [null, null, null];
+      var images = [ 'alf.jpg', 'bobby.jpg', 'finn.jpg', 'indie.jpg'];
       var swipersCreated = false;
       function createSwipers() {
-          var mySwiper = new Swiper('.swiper-container', {
+          swipers[0] = new Swiper('.swiper-container', {
               loop: true,
               grabCursor: true
           })
-          var mySwiper2 = new Swiper('.swiper-container2', {
+          swipers[1] = new Swiper('.swiper-container2', {
               loop: true,
               grabCursor: true
           })
-          var mySwiper3 = new Swiper('.swiper-container3', {
+          swipers[2] = new Swiper('.swiper-container3', {
               loop: true,
               grabCursor: true
           })
+          for (var x = 0; x < images.length; x++) {
+              addImage(images[x]);
+          }
+          //add in images
           swipersCreated = true;
+      }
+
+      function addImage(img) {
+          swipers[0].createSlide('<img src="images/' + img + '">', 'swiper-slide slide-top', 'span').append();
+          swipers[1].createSlide('<img src="images/' + img + '">', 'swiper-slide slide-middle', 'span').append();
+          swipers[2].createSlide('<img src="images/' + img + '">', 'swiper-slide slide-bottom', 'span').append();
       }
       createSwipers();
   </script>
